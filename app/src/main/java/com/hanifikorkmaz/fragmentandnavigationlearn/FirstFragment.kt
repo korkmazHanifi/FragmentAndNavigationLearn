@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.hanifikorkmaz.fragmentandnavigationlearn.databinding.FragmentFirstBinding
 
 
@@ -29,6 +31,21 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.button.setOnClickListener {
+            next(it)
+        }
+
+    }
+
+    //Button Function
+    fun next(view: View){
+
+        val userName= binding.editText.text.toString()
+        val action= FirstFragmentDirections.actionFirstFragmentToSecondFragment(userName)
+
+        Navigation.findNavController(view).navigate(action)
+        //Alternatif olarak: view.findNavController().navigate(action)
 
     }
 
